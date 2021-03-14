@@ -1,4 +1,4 @@
-package com.davidhowe.playground.algorithms
+package com.davidhowe.playground.algorithms.search
 
 /**
  * BFS Implementation:
@@ -13,7 +13,7 @@ package com.davidhowe.playground.algorithms
  * 2. Finding potential paths between vertices.
  * 3. Finding the shortest path between two vertices.
 */
-class bfs {
+class Bfs {
 
     val TAG = "bfs"
 

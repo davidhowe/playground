@@ -1,4 +1,4 @@
-package com.davidhowe.playground.algorithms
+package com.davidhowe.playground.algorithms.search
 
 /**
  * DFS Implementation:
@@ -14,5 +14,5 @@ package com.davidhowe.playground.algorithms
  * 3. Pathfinding, such as in maze puzzles.
  * 4. Finding connected components in a sparse graph.
  */
-class dfs {
+class Dfs {
 }
