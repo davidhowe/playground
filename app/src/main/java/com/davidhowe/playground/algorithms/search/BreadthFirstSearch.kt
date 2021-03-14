@@ -1,5 +1,8 @@
 package com.davidhowe.playground.algorithms.search
 
+import com.davidhowe.playground.algorithms.search.models.Node
+import com.davidhowe.playground.algorithms.search.models.Node.Companion.SAMPLE_DATA
+
 /**
  * BFS Implementation:
  * Uses a FIFO queue to implement search.
@@ -13,16 +16,7 @@ package com.davidhowe.playground.algorithms.search
  * 2. Finding potential paths between vertices.
  * 3. Finding the shortest path between two vertices.
 */
-class Bfs {
-
-    val TAG = "bfs"
-
-    class Node (
-        val id: Int,
-        val value : Int,
-        val connectedIds: List<Int>,
-        val root: Boolean
-    )
+class BreadthFirstSearch {
 
     fun findHighestValueToNode(toNodeId: Int) : Int {
         return bfsLogic(true, toNodeId)
@@ -46,7 +40,12 @@ class Bfs {
         do {
             currentNode = SAMPLE_DATA.first { it.id == getFromQueue(fifoQueue)}
 
+            println("currentNode id=${currentNode.id}")
+
             val nodesOfInterest = findNodesOfInterest(currentNode.id, SAMPLE_DATA)
+
+            //Here we perform any logic relevant to the problem at hand
+            //PROBLEM SPECIFIC LOGIC START
             nodesOfInterest.forEach { node ->
                 //Looking to add node to fifo queue & weight to historyMap
                 if(historyMap.containsKey(node.id)) {
@@ -64,6 +63,7 @@ class Bfs {
                     addToQueue(fifoQueue, node.id)
                 }
             }
+            //PROBLEM SPECIFIC LOGIC END
 
             removeFromQueue(fifoQueue)
 
@@ -91,54 +91,4 @@ class Bfs {
         if(list.isNotEmpty())
             list.removeAt(0)
     }
-
-    companion object {
-        val SAMPLE_DATA = listOf<Node>(
-            Node(
-                id = 0,
-                value = 0,
-                root = true,
-                connectedIds = listOf(1, 2)
-            ),
-            Node(
-                id = 1,
-                value = 5,
-                root = false,
-                connectedIds = listOf(0, 3)
-            ),
-            Node(
-                id = 2,
-                value = 7,
-                root = false,
-                connectedIds = listOf(0, 4, 5)
-            ),
-            Node(
-                id = 3,
-                value = 9,
-                root = false,
-                connectedIds = listOf(1, 6)
-            ),
-            Node(
-                id = 4,
-                value = 2,
-                root = false,
-                connectedIds = listOf(2)
-            ),
-            Node(
-                id = 5,
-                value = 1,
-                root = false,
-                connectedIds = listOf(2, 6)
-            ),
-            Node(
-                id = 6,
-                value = 9,
-                root = false,
-                connectedIds = listOf(5, 3)
-            )
-        )
-    }
-
-
-
 }
